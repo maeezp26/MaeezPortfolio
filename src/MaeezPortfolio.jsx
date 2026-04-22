@@ -206,10 +206,10 @@ export default function Portfolio() {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          from_name: trimmedName,
-          reply_to: trimmedEmail,
-          message: trimmedMessage,
-          to_name: "Maeez Pathan",
+         user_name: trimmedName,
+        user_email: trimmedEmail,
+        message: trimmedMessage,
+        to_name: "Maeez Pathan",
         },
         {
           publicKey: EMAILJS_PUBLIC_KEY,
