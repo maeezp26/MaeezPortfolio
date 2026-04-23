@@ -301,7 +301,7 @@ export default function Portfolio() {
       {/* Navbar */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "#050a0eee", backdropFilter: "blur(12px)", borderBottom: "1px solid #1a2535" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
-          <img src="/maeezscript-logo.svg" alt="maeezscript" style={{ height: 28 }} />
+          <img src="/logo-full.svg" alt="maeezscript" style={{ height: 30 }} />
           <div className="nav-desktop" style={{ display: "flex", gap: 28 }}>
             {NAV_LINKS.map(id => (
               <button key={id} type="button" className={`nav-link${activeSection === id ? " active" : ""}`} onClick={() => scrollTo(id)}>
