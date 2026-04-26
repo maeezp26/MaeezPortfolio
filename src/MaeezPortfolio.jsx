@@ -415,7 +415,7 @@ export default function Portfolio() {
               </div>
               <div style={{ display: "flex", gap: 8 }}>
                 {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" className="btn-ghost">Live ↗</a>}
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">GitHub</a>
+               
               </div>
             </div>
             <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 14, lineHeight: 1.7, color: "#8a9ab5", marginBottom: 16 }}>{project.desc}</p>
