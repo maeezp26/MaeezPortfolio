@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const NAV_LINKS = ["about", "skills", "projects", "experience", "education", "contact"];
-const ROLE_TITLES = ["Full Stack Developer", "MERN Developer", ".NET Developer", "MCA Student", "Freelancer"];
+const ROLE_TITLES = ["Full Stack Developer", "MERN Developer", "React Developer", "MCA Graduate", "Freelancer"];
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "maeezscript@gmail.com";
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
@@ -15,6 +15,7 @@ const SKILLS = {
   "Frontend": ["HTML5", "CSS3", "SASS", "Responsive Design"],
   "Cloud & Tools": ["Cloudinary", "Vercel", "Render", "Git", "GitHub", "Postman", "VS Code"],
   "Database": ["MongoDB Atlas", "PostgreSQL", "SQL"],
+  "Currently Learning": ["Java", "Spring Boot", "Hibernate / JPA"],
 };
 
 const PROJECTS = [
@@ -55,7 +56,8 @@ const EXPERIENCE = [
     role: "Full Stack Intern",
     company: "Casepoint Pvt. Ltd.",
     location: "Surat",
-    period: "Jan 2026 - Present",
+ 
+    period: "Jan 2026 - June 2026",
     current: true,
     stack: ["ASP.NET Core MVC", "Web API", "Kendo UI", "PostgreSQL", "C#"],
     points: [
@@ -85,16 +87,16 @@ const EDUCATION = [
   {
     degree: "Master of Computer Applications (MCA)",
     institute: "Gujarat Technological University",
-    period: "Aug 2024 - 2026",
-    detail: "3rd Semester - Expected Graduation: 2026",
-    current: true,
+    period: "Aug 2024 - Apr 2026",
+    detail: "Graduated 2026",
+    highlight: true,
   },
   {
     degree: "Bachelor of Computer Applications (BCA)",
     institute: "Veer Narmad South Gujarat University",
     period: "Oct 2021 - Apr 2024",
     detail: "CGPA: 7.96 / 10",
-    current: false,
+    highlight: false,
   },
 ];
 
@@ -206,10 +208,10 @@ export default function Portfolio() {
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-         user_name: trimmedName,
-        user_email: trimmedEmail,
-        message: trimmedMessage,
-        to_name: "Maeez Pathan",
+          user_name: trimmedName,
+          user_email: trimmedEmail,
+          message: trimmedMessage,
+          to_name: "Maeez Pathan",
         },
         {
           publicKey: EMAILJS_PUBLIC_KEY,
@@ -278,6 +280,8 @@ export default function Portfolio() {
         .form-status.error p { color: #ffd6d6; }
         .form-status.info { background: #5a8cff12; border-color: #5a8cff33; }
         .form-status.info p { color: #d7e2ff; }
+        .open-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; color: ${ACCENT}; background: ${ACCENT}12; border: 1px solid ${ACCENT}33; padding: 6px 12px; border-radius: 999px; margin-bottom: 20px; }
+        .open-badge i { width: 7px; height: 7px; border-radius: 50%; background: ${ACCENT}; box-shadow: 0 0 8px ${ACCENT}; display: inline-block; }
         @media (max-width: 800px) { .contact-layout { grid-template-columns: 1fr; gap: 32px; } }
         @media (max-width: 600px) {
           .grid-2 { grid-template-columns: 1fr; }
@@ -291,6 +295,7 @@ export default function Portfolio() {
         @keyframes blink { 50% { opacity: 0; } }
         .fade-in { animation: fadeUp 0.7s ease both; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) { .fade-in, .cursor { animation: none; } }
         .grid-dots { background-image: radial-gradient(circle, #1a2535 1px, transparent 1px); background-size: 28px 28px; }
         .social-link { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; color: #6b7f99; text-decoration: none; transition: color 0.2s; }
         .social-link:hover { color: ${ACCENT}; }
@@ -341,6 +346,7 @@ export default function Portfolio() {
         <div style={{ position: "absolute", bottom: "10%", left: "-5%", width: 300, height: 300, background: `radial-gradient(circle, ${ACCENT2}08 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: 900, margin: "0 auto", padding: "100px 24px 60px", width: "100%" }}>
           <div className="fade-in">
+            <span className="open-badge"><i /> Open to full-time roles</span>
             <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, letterSpacing: 3, color: ACCENT, marginBottom: 16 }}>
               &gt; hello_world.init()
             </p>
@@ -354,8 +360,8 @@ export default function Portfolio() {
               </span>
             </div>
             <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 16, lineHeight: 1.8, color: "#6b7f99", maxWidth: 560, marginBottom: 36 }}>
-              MCA final-semester student at GTU, interning at <span style={{ color: "#c9d4e8" }}>Casepoint Pvt. Ltd.</span> building enterprise .NET apps.
-              Skilled in MERN stack - building real-world apps and doing freelance work locally in Surat.
+              MCA graduate (GTU, 2026) with internship experience building enterprise .NET apps at <span style={{ color: "#c9d4e8" }}>Casepoint Pvt. Ltd.</span>{" "}
+              Skilled in the MERN stack, with live full-stack projects and freelance work for clients in India and Canada. Now strengthening my Java and Spring Boot skills.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", marginBottom: 40 }}>
               <button className="btn-primary" onClick={() => scrollTo("projects")}>View Projects →</button>
@@ -406,7 +412,7 @@ export default function Portfolio() {
           <div key={index} className="project-card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 10, marginBottom: 12 }}>
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4, flexWrap: "wrap" }}>
                   <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 20, fontWeight: 600, color: "#ffffff" }}>{project.title}</h3>
                   <span className="tag">{project.tag}</span>
                   {project.commits && <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, color: "#3a4a5a" }}>{project.commits} commits</span>}
@@ -415,7 +421,7 @@ export default function Portfolio() {
               </div>
               <div style={{ display: "flex", gap: 8 }}>
                 {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" className="btn-ghost">Live ↗</a>}
-               
+                {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-ghost">GitHub ↗</a>}
               </div>
             </div>
             <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 14, lineHeight: 1.7, color: "#8a9ab5", marginBottom: 16 }}>{project.desc}</p>
@@ -467,12 +473,12 @@ export default function Portfolio() {
         <h2 className="section-title">Education</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {EDUCATION.map((education, index) => (
-            <div key={index} style={{ background: "#0a1520", border: `1px solid ${education.current ? `${ACCENT}44` : "#1a2535"}`, borderRadius: 8, padding: 28, position: "relative", overflow: "hidden" }}>
-              {education.current && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT2})` }} />}
-              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, letterSpacing: 2, color: education.current ? ACCENT : "#3a4a5a", marginBottom: 12 }}>{education.period}</p>
+            <div key={index} style={{ background: "#0a1520", border: `1px solid ${education.highlight ? `${ACCENT}44` : "#1a2535"}`, borderRadius: 8, padding: 28, position: "relative", overflow: "hidden" }}>
+              {education.highlight && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT2})` }} />}
+              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, letterSpacing: 2, color: education.highlight ? ACCENT : "#3a4a5a", marginBottom: 12 }}>{education.period}</p>
               <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 17, fontWeight: 600, color: "#ffffff", marginBottom: 8, lineHeight: 1.3 }}>{education.degree}</h3>
               <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 14, color: "#6b7f99", marginBottom: 8 }}>{education.institute}</p>
-              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: education.current ? ACCENT : "#3a4a5a" }}>{education.detail}</p>
+              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: education.highlight ? ACCENT : "#3a4a5a" }}>{education.detail}</p>
             </div>
           ))}
         </div>
@@ -485,7 +491,7 @@ export default function Portfolio() {
         <div className="contact-layout">
           <div>
             <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 15, color: "#6b7f99", lineHeight: 1.8, marginBottom: 28 }}>
-              I'm open to full-stack developer roles, freelance projects, and collaborations. Currently based in Surat, Gujarat. Let's build something great.
+              I'm open to full-stack developer roles (MERN and Java), freelance projects, and collaborations. Based in Surat, Gujarat, and willing to relocate to Bangalore, Hyderabad, or Pune.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <a href={`mailto:${CONTACT_EMAIL}`} className="social-link">
@@ -493,7 +499,7 @@ export default function Portfolio() {
                 {CONTACT_EMAIL}
               </a>
               <a href="tel:+919081634004" className="social-link">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 0116.5 2.18 2 2 0 0118.92 4v3a2 2 0 01-1.41 1.68A16 16 0 0115.04 10a16 16 0 002 3.5 16 16 0 003.5 2 2 0 011.46 1.42z"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 0116.5 2.18 2 2 0 0118.92 4v3a2 2 0 01-1.41 1.68A16 16 0 0115.04 10a16 16 0 002 3.5 16 16 0 003.5 2 2 2 0 011.46 1.42z"/></svg>
                 +91 90816 34004
               </a>
               <a href="https://github.com/maeezp26" target="_blank" rel="noopener noreferrer" className="social-link">
@@ -561,7 +567,7 @@ export default function Portfolio() {
       {/* Footer */}
       <footer style={{ borderTop: "1px solid #1a2535", padding: "24px", textAlign: "center" }}>
         <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: "#3a4a5a", letterSpacing: 1 }}>
-          Designed & Built by <span style={{ color: ACCENT }}>Maeez Pathan</span> · 2025
+          Designed & Built by <span style={{ color: ACCENT }}>Maeez Pathan</span> · 2026
         </p>
       </footer>
     </div>
